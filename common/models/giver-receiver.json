@@ -1,0 +1,28 @@
+{
+  "name": "GiverReceiver",
+  "plural": "giverReceivers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "locationId": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "location": {
+      "type": "hasOne",
+      "model": "Location",
+      "foreignKey": "locationId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,45 @@
+{
+  "name": "GiftEntry",
+  "plural": "giftEntries",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "contents": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "string"
+    },
+    "giverId": {
+      "type": "number",
+      "required": true
+    },
+    "receiverId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "giver": {
+      "type": "hasOne",
+      "model": "GiverReceiver",
+      "foreignKey": "giverId"
+    },
+    "receiver": {
+      "type": "hasOne",
+      "model": "GiverReceiver",
+      "foreignKey": "receiverId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
