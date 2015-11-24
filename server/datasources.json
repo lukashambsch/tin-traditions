@@ -2,5 +2,14 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "tinTraditions": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "tinTraditions",
+    "username": "",
+    "password": "",
+    "name": "tinTraditions",
+    "connector": "mongodb"
   }
 }

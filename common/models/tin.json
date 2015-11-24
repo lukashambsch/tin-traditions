@@ -8,7 +8,23 @@
   },
   "properties": {
     "serialNumber": {
+      "type": "string",
+      "required": true
+    },
+    "pin": {
+      "type": "string",
+      "required": true
+    },
+    "orderNumber": {
+      "type": "string",
+      "required": true
+    },
+    "purchaserId": {
       "type": "number",
+      "required": true
+    },
+    "datePurchased": {
+      "type": "date",
       "required": true
     }
   },

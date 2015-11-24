@@ -1,2 +1,3 @@
-var angular = require('angular');
-angular.module('app', []);
+(function () {
+  angular.module('app', ['app.tin', 'lbServices']);
+})();

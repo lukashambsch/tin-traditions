@@ -14,38 +14,38 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "tinTraditions"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": false
   },
   "Tin": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": true
   },
   "Location": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": true
   },
   "GiftEntry": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": true
   },
   "GiverReceiver": {
-    "dataSource": "db",
+    "dataSource": "tinTraditions",
     "public": true
   }
 }
