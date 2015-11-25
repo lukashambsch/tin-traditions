@@ -1,3 +1,14 @@
 (function () {
-  angular.module('app.tin', []);
+  angular.module('app.tin', ['ui.router'])
+    .config(['$stateProvider', function ($stateProvider) {
+      $stateProvider
+        .state('tinSearch', {
+          url: '^/',
+          templateUrl: 'js/tin/search.html'
+        })
+        .state('tinDetail', {
+          url: '^/:serialNumber',
+          templateUrl: 'js/tin/detail.html'
+        })
+    }])
 })();

@@ -19,27 +19,36 @@
       "type": "string"
     },
     "giverId": {
-      "type": "number",
+      "type": "string",
       "required": true
     },
     "receiverId": {
-      "type": "number",
+      "type": "string",
+      "required": true
+    },
+    "tinId": {
+      "type": "string",
+      "required": true
+    },
+    "pin": {
+      "type": "string",
       "required": true
     }
   },
   "validations": [],
   "relations": {
+    "tin": {
+      "type": "hasOne",
+      "model": "Tin",
+      "foreignKey": "tinId"
+    },
     "giver": {
       "type": "hasOne",
-      "model": "GiverReceiver",
+      "model": "Giver",
       "foreignKey": "giverId"
-    },
-    "receiver": {
-      "type": "hasOne",
-      "model": "GiverReceiver",
-      "foreignKey": "receiverId"
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "hidden": ["pin"]
 }

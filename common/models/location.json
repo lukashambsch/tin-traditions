@@ -10,9 +10,12 @@
     "city": {
       "type": "string"
     },
-    "state": {
+    "stateProvince": {
       "type": "string",
       "required": true
+    },
+    "country": {
+     "type": "string"
     },
     "streetOne": {
       "type": "string"
@@ -25,7 +28,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "givers": {
+      "type": "hasAndBelongsToMany",
+      "model": "Giver",
+      "foreignKey": ""
+    },
+    "receivers": {
+      "type": "hasAndBelongsToMany",
+      "model": "Receiver",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

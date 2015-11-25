@@ -1,0 +1,17 @@
+<div ng-controller="SearchController as search">
+  <form ng-submit="search.findTins(search.serialNumber)">
+    <input placeholder="Search" type="text" ng-model="search.serialNumber">
+  </form>
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Serial Number</th>
+      <th>Number of Gift Entries</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="tin in search.tins" ng-click="goToDetail(tin.serialNumber)">
+        <td>{{tin.serialNumber}}</td>
+        <td>{{tin.giftEntries.length}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

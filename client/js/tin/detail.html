@@ -1,0 +1,24 @@
+<div ng-controller="TinController as tin">
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Date</th>
+      <th>Giver</th>
+      <th>Giver Location</th>
+      <th>Receiver</th>
+      <th>Receiver Location</th>
+      <th>Contents</th>
+      <th>Message</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="entry in tin.tin.giftEntries">
+        <td>{{entry.date}}</td>
+        <td>{{entry.giver.name}}</td>
+        <td>{{entry.giver.location.city}}</td>
+        <td>{{entry.receiver.name}}</td>
+        <td>{{entry.receiver.location.city}}</td>
+        <td>{{entry.contents}}</td>
+        <td>{{entry.message}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

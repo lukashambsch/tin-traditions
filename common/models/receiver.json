@@ -1,6 +1,6 @@
 {
-  "name": "GiverReceiver",
-  "plural": "giverReceivers",
+  "name": "Receiver",
+  "plural": "receivers",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -12,7 +12,7 @@
       "required": true
     },
     "locationId": {
-      "type": "number"
+      "type": "string"
     }
   },
   "validations": [],

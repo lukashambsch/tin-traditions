@@ -20,7 +20,7 @@
       "required": true
     },
     "purchaserId": {
-      "type": "number",
+      "type": "string",
       "required": true
     },
     "datePurchased": {
@@ -29,7 +29,14 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "giftEntries": {
+      "type": "hasMany",
+      "model": "GiftEntry",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "hidden": ["pin"]
 }

@@ -1,0 +1,33 @@
+{
+  "name": "Giver",
+  "plural": "givers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "locationId": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "location": {
+      "type": "hasOne",
+      "model": "Location",
+      "foreignKey": "locationId"
+    },
+    "giftEntries": {
+      "type": "hasMany",
+      "model": "GiftEntry",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

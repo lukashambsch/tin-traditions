@@ -1,16 +1,12 @@
 module.exports = function (app) {
   var router = app.loopback.Router();
 
-  router.get('/', function (req, res) {
-    res.render('index', {
-      loginFailed: false
-    });
+  router.get('', function (req, res) {
+    res.render('index');
   });
 
-  router.get('/app', function (req, res) {
-    res.render('app', {
-      loginFailed: false
-    });
+  router.get('/tins', function (req, res) {
+    res.render('app');
   });
 
   app.use(router);
