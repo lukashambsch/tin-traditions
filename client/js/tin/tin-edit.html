@@ -1,0 +1,32 @@
+<div>
+  <div class="col-md-2">
+    <input required type="date" class="form-control" uib-datepicker-popup ng-model="entry.date" close-text="Close" />
+  </div>
+  <div class="col-md-1">
+    <input required class="form-control" type="text" ng-model="entry.giver.name">
+  </div>
+  <div class="col-md-1">
+    <input class="form-control" type="text" ng-model="entry.giver.location.city">
+  </div>
+  <div class="col-md-1">
+    <input required class="form-control" type="text" ng-model="entry.receiver.name">
+  </div>
+  <div class="col-md-1">
+    <input class="form-control" type="text" ng-model="entry.receiver.location.city">
+  </div>
+  <div class="col-md-1">
+    <input class="form-control" type="text" ng-model="entry.contents">
+  </div>
+  <div class="col-md-1">
+    <input class="form-control" type="text" ng-model="entry.message">
+  </div>
+  <div class="col-md-1">
+    <input required class="form-control" type="text" ng-model="entry.pin">
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-default" ng-click="tin.saveEntry(entry, entry.giver, entry.giver.location, entry.receiver, entry.receiver.location)">Save</button>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-default" ng-click="tin.cancelEntryEdit(entry)">Cancel</button>
+  </div>
+</div>

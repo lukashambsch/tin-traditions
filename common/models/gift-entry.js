@@ -5,10 +5,12 @@ module.exports = function(GiftEntry) {
   GiftEntry.validateAsync('pin', pinValidator, {message: 'The PIN entered does not match the PIN for this tin.'});
 
   function pinValidator (error, done) {
+    console.log('validating');
     var base = this;
     entry = base.toJSON();
     dbTin = Tin.findOne({id: entry.tinId}, function (err, tin) {
       if (base.pin != tin.pin) error();
+      base.pin = '';
       done();
     });
   }

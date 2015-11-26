@@ -1,5 +1,5 @@
 (function () {
-  angular.module('app', ['app.tin', 'lbServices', 'ui.router'])
+  angular.module('app', ['app.tin', 'lbServices', 'ui.router', 'ui.bootstrap'])
     .config(['$urlRouterProvider', function ($urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
     }])

@@ -1,24 +1,18 @@
-<div ng-controller="TinController as tin">
-  <table class="table table-striped table-hover">
-    <thead>
-      <th>Date</th>
-      <th>Giver</th>
-      <th>Giver Location</th>
-      <th>Receiver</th>
-      <th>Receiver Location</th>
-      <th>Contents</th>
-      <th>Message</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="entry in tin.tin.giftEntries">
-        <td>{{entry.date}}</td>
-        <td>{{entry.giver.name}}</td>
-        <td>{{entry.giver.location.city}}</td>
-        <td>{{entry.receiver.name}}</td>
-        <td>{{entry.receiver.location.city}}</td>
-        <td>{{entry.contents}}</td>
-        <td>{{entry.message}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid" ng-controller="TinController as tin">
+  <div class="row">
+    <div class="col-md-2">Date</div>
+    <div class="col-md-1">Giver</div>
+    <div class="col-md-1">Giver Location</div>
+    <div class="col-md-1">Receiver</div>
+    <div class="col-md-1">Receiver Location</div>
+    <div class="col-md-1">Contents</div>
+    <div class="col-md-1">Message</div>
+    <div class="col-md-1">Pin</div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="row" ng-repeat="entry in tin.tin.giftEntries">
+    <tin-view ng-hide="entry.edit"></tin-view>
+    <tin-edit ng-show="entry.edit"></tin-edit>
+  </div>
 </div>
