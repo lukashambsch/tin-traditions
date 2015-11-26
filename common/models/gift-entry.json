@@ -18,12 +18,12 @@
     "message": {
       "type": "string"
     },
-    "giverId": {
-      "type": "string",
+    "giver": {
+      "type": "object",
       "required": true
     },
-    "receiverId": {
-      "type": "string",
+    "receiver": {
+      "type": "object",
       "required": true
     },
     "tinId": {
@@ -41,11 +41,6 @@
       "type": "hasOne",
       "model": "Tin",
       "foreignKey": "tinId"
-    },
-    "giver": {
-      "type": "hasOne",
-      "model": "Giver",
-      "foreignKey": "giverId"
     }
   },
   "acls": [],

@@ -6,13 +6,13 @@
     <input required class="form-control" type="text" ng-model="entry.giver.name">
   </div>
   <div class="col-md-1">
-    <input class="form-control" type="text" ng-model="entry.giver.location.city">
+    <input class="form-control" type="text" ng-model="entry.giver.location">
   </div>
   <div class="col-md-1">
     <input required class="form-control" type="text" ng-model="entry.receiver.name">
   </div>
   <div class="col-md-1">
-    <input class="form-control" type="text" ng-model="entry.receiver.location.city">
+    <input class="form-control" type="text" ng-model="entry.receiver.location">
   </div>
   <div class="col-md-1">
     <input class="form-control" type="text" ng-model="entry.contents">
@@ -24,9 +24,9 @@
     <input required class="form-control" type="text" ng-model="entry.pin">
   </div>
   <div class="col-md-1">
-    <button class="btn btn-default" ng-click="tin.saveEntry(entry, entry.giver, entry.giver.location, entry.receiver, entry.receiver.location)">Save</button>
-  </div>
-  <div class="col-md-1">
-    <button class="btn btn-default" ng-click="tin.cancelEntryEdit(entry)">Cancel</button>
+    <div class="btn-group inline">
+      <button class="btn btn-success" ng-click="item.saveEntry(entry)">Save</button>
+      <button class="btn btn-danger" ng-click="item.cancelEntryEdit(entry)">Cancel</button>
+    </div>
   </div>
 </div>

@@ -36,19 +36,7 @@
     "dataSource": "tinTraditions",
     "public": true
   },
-  "Location": {
-    "dataSource": "tinTraditions",
-    "public": true
-  },
   "GiftEntry": {
-    "dataSource": "tinTraditions",
-    "public": true
-  },
-  "Giver": {
-    "dataSource": "tinTraditions",
-    "public": true
-  },
-  "Receiver": {
     "dataSource": "tinTraditions",
     "public": true
   }

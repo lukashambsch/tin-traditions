@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="TinController as tin">
+<div class="container-fluid" ng-controller="ItemController as item">
   <div class="row">
     <div class="col-md-2">Date</div>
     <div class="col-md-1">Giver</div>
@@ -11,7 +11,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-1"></div>
   </div>
-  <div class="row" ng-repeat="entry in tin.tin.giftEntries">
+  <div class="row" ng-repeat="entry in item.giftEntries">
     <tin-view ng-hide="entry.edit"></tin-view>
     <tin-edit ng-show="entry.edit"></tin-edit>
   </div>

@@ -7,7 +7,7 @@
           templateUrl: 'js/tin/search.html'
         })
         .state('tinDetail', {
-          url: '^/:serialNumber',
+          url: '^/:id',
           templateUrl: 'js/tin/detail.html'
         })
     }])
