@@ -6,6 +6,9 @@
   "options": {
     "validateUpsert": true
   },
+  "hidden": [
+    "pin"
+  ],
   "properties": {
     "serialNumber": {
       "type": "string",
@@ -37,6 +40,5 @@
     }
   },
   "acls": [],
-  "methods": {},
-  "hidden": ["pin"]
+  "methods": {}
 }

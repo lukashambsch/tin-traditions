@@ -39,5 +39,9 @@
   "GiftEntry": {
     "dataSource": "tinTraditions",
     "public": true
+  },
+  "SalesItem": {
+    "dataSource": "tinTraditions",
+    "public": true
   }
 }

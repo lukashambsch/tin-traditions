@@ -6,6 +6,9 @@
   "options": {
     "validateUpsert": true
   },
+  "hidden": [
+    "pin"
+  ],
   "properties": {
     "date": {
       "type": "date",
@@ -44,6 +47,5 @@
     }
   },
   "acls": [],
-  "methods": {},
-  "hidden": ["pin"]
+  "methods": {}
 }

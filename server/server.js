@@ -4,8 +4,6 @@ var path = require('path');
 
 var app = module.exports = loopback();
 
-app.set('view engine', 'jade');
-app.set('views', './client');
 app.start = function() {
   // start the web server
   return app.listen(function() {
