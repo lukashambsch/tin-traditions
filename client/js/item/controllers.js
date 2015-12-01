@@ -2,7 +2,7 @@
   angular.module('app.item')
     .controller('SearchController', ['Item', SearchController])
     .controller('ItemController', ['Item', 'GiftEntry', '$stateParams', ItemController])
-    .controller('GiftEntryController', ['GiftEntry', '$stateParams', GiftEntryController]);
+    .controller('GiftEntryController', ['GiftEntry', '$stateParams', '$state', GiftEntryController]);
 
   function SearchController (Item) {
     var vm = this;
@@ -33,11 +33,11 @@
 
   }
 
-  function GiftEntryController (GiftEntry, $stateParams) {
+  function GiftEntryController (GiftEntry, $stateParams, $state) {
     var vm = this;
 
     vm.saveEntry = saveEntry;
-    vm.create = true;
+
     getGiftEntry($stateParams.id);
 
     function getGiftEntry (id) {
@@ -45,22 +45,16 @@
         vm.giftEntry = GiftEntry.findById({id: id}, function (entry) {
           entry.date = new Date(entry.date);
         });
-        vm.create = false;
       } else {
         vm.giftEntry = {itemId: $stateParams.itemId};
       }
     }
 
     function saveEntry (entry) {
-      if (vm.create) {
-        GiftEntry.create(entry, function (giftEntry) {
-          console.log(giftEntry);
-        });
-      } else {
-        entry.$save(function (giftEntry) {
-          console.log(giftEntry);
-        });
-      }
+      GiftEntry.upsert(entry, function (giftEntry) {
+        $state.go('itemDetail', {id: giftEntry.itemId});
+        console.log(giftEntry);
+      });
     }
   }
 })();
