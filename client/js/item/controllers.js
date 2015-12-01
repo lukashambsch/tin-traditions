@@ -1,50 +1,43 @@
 (function () {
   angular.module('app.item')
-    .controller('SearchController', ['Tin', SearchController])
-    .controller('ItemController', ['Tin', 'GiftEntry', 'Giver', 'Receiver', 'Location', '$stateParams', ItemController]);
+    .controller('SearchController', ['Item', SearchController])
+    .controller('ItemController', ['Item', 'GiftEntry', '$stateParams', ItemController]);
 
-  function SearchController (Tin) {
+  function SearchController (Item) {
     var vm = this;
     vm.serialNumber = '';
-    vm.findTins = findTins;
+    vm.findItems = findItems;
 
-    findTins(vm.serialNumber);
+    findItems(vm.serialNumber);
 
-    function findTins (serialNumber) {
-      vm.tins = Tin.find({filter: {include: 'giftEntries', where: {serialNumber: {like: vm.serialNumber}}}});
+    function findItems (serialNumber) {
+      vm.tins = Item.find({filter: {include: 'giftEntries', where: {serialNumber: {like: vm.serialNumber}}}});
     }
   }
 
-  function ItemController (Tin, GiftEntry, Giver, Receiver, Location, $stateParams) {
+  function ItemController (Item, GiftEntry, $stateParams) {
     var vm = this;
 
-    vm.editEntry = editEntry;
-    vm.saveEntry = saveEntry;
-    vm.cancelEntryEdit = cancelEntryEdit;
-    getTin($stateParams.id);
+    getItem($stateParams.id);
 
-    function editEntry (entry) {
-      entry.edit = true;
-    }
-
-    function getTin (id) {
-      vm.giftEntries = Tin.giftEntries({id: id}, function (entries) {
+    function getItem (id) {
+      vm.giftEntries = Item.giftEntries({id: id}, function (entries) {
         entries.forEach(function (entry) {
           entry.date = new Date(entry.date);
         });
       });
     }
 
+  }
+
+  function GiftEntryController (GiftEntry, $stateParams) {
+    var vm = this;
+
     function saveEntry (entry) {
-      entry.edit = false;
       GiftEntry.prototype$updateAttributes({id: entry.id}, entry)
         .$promise.then(function (giftEntry) {
           console.log(giftEntry);
         });
-    }
-
-    function cancelEntryEdit (entry) {
-      entry.edit = false;
     }
   }
 })();

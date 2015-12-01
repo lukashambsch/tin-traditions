@@ -1,6 +1,6 @@
 {
-  "name": "Tin",
-  "plural": "tins",
+  "name": "Item",
+  "plural": "items",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -22,7 +22,7 @@
       "type": "string",
       "required": true
     },
-    "purchaserId": {
+    "salesItemId": {
       "type": "string",
       "required": true
     },

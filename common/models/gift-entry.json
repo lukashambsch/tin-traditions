@@ -29,7 +29,7 @@
       "type": "object",
       "required": true
     },
-    "tinId": {
+    "itemId": {
       "type": "string",
       "required": true
     },
@@ -39,13 +39,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "tin": {
-      "type": "hasOne",
-      "model": "Tin",
-      "foreignKey": "tinId"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

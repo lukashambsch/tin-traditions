@@ -32,7 +32,7 @@
     "dataSource": "tinTraditions",
     "public": false
   },
-  "Tin": {
+  "Item": {
     "dataSource": "tinTraditions",
     "public": true
   },
