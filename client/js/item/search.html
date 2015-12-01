@@ -8,9 +8,9 @@
       <th>Number of Gift Entries</th>
     </thead>
     <tbody>
-      <tr ng-repeat="tin in search.tins" ng-click="goToDetail(tin.serialNumber)">
-        <td>{{tin.serialNumber}}</td>
-        <td>{{tin.giftEntries.length}}</td>
+    <tr ui-sref="itemDetail({id: item.id})" ng-repeat="item in search.items" ng-click="goToDetail(item.serialNumber)">
+        <td>{{item.serialNumber}}</td>
+        <td>{{item.giftEntries.length}}</td>
       </tr>
     </tbody>
   </table>

@@ -9,7 +9,7 @@
       <th>Contents</th>
       <th>Message</th>
       <th>
-        <button class="btn btn-primary">Add</button>
+        <button ui-sref="giftEntryAdd({itemId: item.itemId})" class="btn btn-primary">Add</button>
       </th>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
         <td>{{entry.contents}}</td>
         <td>{{entry.message}}</td>
         <td>
-          <button class="btn btn-primary">Edit</button>
+          <button ui-sref="giftEntryEdit({itemId: entry.itemId, id: entry.id})" class="btn btn-primary">Edit</button>
         </td>
       </tr>
     </tbody>
