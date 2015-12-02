@@ -1,5 +1,6 @@
 (function () {
-  angular.module('app', ['app.home', 'app.item', 'lbServices', 'ui.router', 'ui.bootstrap'])
+  angular.module('app', [
+    'app.core', 'app.home', 'app.item', 'lbServices', 'ui.router', 'ui.bootstrap', 'uiRouterStyles'])
     .config(['$urlRouterProvider', function ($urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
     }])

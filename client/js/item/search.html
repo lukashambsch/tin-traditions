@@ -1,4 +1,6 @@
-<div ng-controller="SearchController as search">
+<link rel="stylesheet" href="css/my.css" type="text/css">
+<tin-nav></tin-nav>
+<div class="container-fluid" ng-controller="SearchController as search">
   <form ng-submit="search.findTins(search.serialNumber)">
     <input placeholder="Search" type="text" ng-model="search.serialNumber">
   </form>
