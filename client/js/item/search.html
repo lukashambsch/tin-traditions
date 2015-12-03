@@ -2,7 +2,7 @@
 <tin-nav></tin-nav>
 <div class="container-fluid" ng-controller="SearchController as search">
   <form ng-submit="search.findTins(search.serialNumber)">
-    <input placeholder="Search" type="text" ng-model="search.serialNumber">
+    <input class="form-control" placeholder="Search" type="text" ng-model="search.serialNumber">
   </form>
   <table class="table table-striped table-hover">
     <thead>
