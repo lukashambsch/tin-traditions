@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="css/my.css" type="text/css">
+<tin-nav></tin-nav>
+<div class="container-fluid" ng-controller="StoreController as store">
+  <div class="row">
+    <div class="col-xs-4" ng-repeat="product in store.products">
+      {{product.name}}
+    </div>
+  </div>
+</div>

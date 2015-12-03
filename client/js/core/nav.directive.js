@@ -5,7 +5,7 @@
   function tinNav () {
     return {
       restrict: 'E',
-      templateUrl: 'js/core/nav.html'
+      templateUrl: 'js/core/tin-nav.html'
     }
   }
 })();

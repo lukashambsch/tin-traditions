@@ -6,6 +6,7 @@
 
   function SearchController (Item) {
     var vm = this;
+    vm.items = [];
     vm.serialNumber = '';
     vm.findItems = findItems;
 
