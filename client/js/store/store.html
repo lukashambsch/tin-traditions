@@ -3,7 +3,15 @@
 <div class="container-fluid" ng-controller="StoreController as store">
   <div class="row">
     <div class="col-xs-4" ng-repeat="product in store.products">
-      {{product.name}}
+      <div class="thumbnail">
+        <h3>{{product.name}}</h3>
+        <img src="" alt="">
+        <p>{{product.description}}</p>
+        <h3>{{product.price}}</h3>
+        <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1" quantity-max="30">
+          <span>Add To Cart</span>
+        </ngcart-addtocart>
+      </div>
     </div>
   </div>
 </div>

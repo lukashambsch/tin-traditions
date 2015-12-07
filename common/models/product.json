@@ -1,6 +1,6 @@
 {
-  "name": "SalesItem",
-  "plural": "salesItems",
+  "name": "Product",
+  "plural": "products",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

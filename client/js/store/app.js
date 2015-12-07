@@ -9,6 +9,10 @@
         .state('storeItemDisplay', {
           url: '^/store/:id',
           templateUrl: 'js/store/display.html'
+        })
+        .state('cart', {
+          url: '^/cart',
+          templateUrl: 'js/store/cart.html'
         });
     }]);
 })();

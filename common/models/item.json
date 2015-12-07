@@ -22,7 +22,7 @@
       "type": "string",
       "required": true
     },
-    "salesItemId": {
+    "productId": {
       "type": "string",
       "required": true
     },
@@ -37,6 +37,11 @@
       "type": "hasMany",
       "model": "GiftEntry",
       "foreignKey": ""
+    },
+    "product": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignKey": "productId"
     }
   },
   "acls": [],

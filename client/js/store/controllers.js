@@ -1,9 +1,9 @@
 (function () {
   angular.module('app.store')
-    .controller('StoreController', ['SalesItem', 'ngCart', StoreController])
-    .controller('ProductController', ['SalesItem', ProductController]);
+    .controller('StoreController', ['Product', 'ngCart', StoreController])
+    .controller('ProductController', ['Product', ProductController]);
 
-    function StoreController (SalesItem, ngCart) {
+    function StoreController (Product, ngCart) {
       var vm = this;
 
       vm.products = [];
@@ -11,11 +11,11 @@
       getProducts();
 
       function getProducts () {
-        vm.products = SalesItem.find();
+        vm.products = Product.find();
       }
     }
 
-    function ProductController (SalesItem) {
+    function ProductController (Product) {
       var vm = this;
     }
 })();

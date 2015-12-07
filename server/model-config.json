@@ -40,7 +40,7 @@
     "dataSource": "tinTraditions",
     "public": true
   },
-  "SalesItem": {
+  "Product": {
     "dataSource": "tinTraditions",
     "public": true
   }
