@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/my.css" type="text/css">
 <tin-nav></tin-nav>
-<div class="container-fluid" ng-controller="ItemController as item">
+<div class="container-fluid" ng-controller="ItemController as vm">
   <table class="table table-hover table-responsive">
     <thead>
       <th>Date</th>
@@ -11,11 +11,11 @@
       <th>Contents</th>
       <th>Message</th>
       <th>
-        <button ui-sref="giftEntryAdd({itemId: item.itemId})" class="btn btn-primary">Add</button>
+        <button ui-sref="giftEntryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
       </th>
     </thead>
     <tbody>
-      <tr ng-repeat="entry in item.giftEntries">
+      <tr ng-repeat="entry in vm.item.giftEntries">
         <td>{{entry.date.toDateString()}}</td>
         <td>{{entry.giver.name}}</td>
         <td>{{entry.giver.location}}</td>

@@ -1,61 +1,48 @@
 (function () {
   angular.module('app.item')
-    .controller('SearchController', ['Item', SearchController])
-    .controller('ItemController', ['Item', 'GiftEntry', '$stateParams', ItemController])
-    .controller('GiftEntryController', ['GiftEntry', '$stateParams', '$state', GiftEntryController]);
+    .controller('SearchController', ['ItemFactory', SearchController])
+    .controller('ItemController', ['ItemFactory', '$stateParams', ItemController])
+    .controller('GiftEntryController', ['GiftEntryFactory', 'ItemFactory', '$stateParams', '$state', GiftEntryController]);
 
-  function SearchController (Item) {
+  function SearchController (ItemFactory) {
     var vm = this;
-    vm.items = [];
+    vm.items = ItemFactory.items;
     vm.serialNumber = '';
-    vm.findItems = findItems;
+    vm.findItems = ItemFactory.findItems;
 
-    findItems(vm.serialNumber);
-
-    function findItems (serialNumber) {
-      vm.items = Item.find({filter: {include: 'giftEntries', where: {serialNumber: {like: vm.serialNumber}}}});
-    }
+    ItemFactory.findItems(vm.serialNumber).then(function () {
+      vm.items = ItemFactory.items;
+    });
   }
 
-  function ItemController (Item, GiftEntry, $stateParams) {
+  function ItemController (ItemFactory, $stateParams) {
     var vm = this;
 
-    vm.itemId = $stateParams.id;
+    vm.item = ItemFactory.item;
 
-    getItem(vm.itemId);
-
-    function getItem (id) {
-      vm.giftEntries = Item.giftEntries({id: id}, function (entries) {
-        entries.forEach(function (entry) {
-          entry.date = new Date(entry.date);
-        });
-      });
-    }
+    ItemFactory.getItem(id).then(function () {
+      vm.item = ItemFactory.item;
+    });
 
   }
 
-  function GiftEntryController (GiftEntry, $stateParams, $state) {
+  function GiftEntryController (GiftEntryFactory, ItemFactory, $stateParams, $state) {
     var vm = this;
 
-    vm.saveEntry = saveEntry;
+    vm.saveEntry = GiftEntryFactory.saveGiftEntry;
+    vm.item = ItemFactory.item;
+    vm.giftEntry = GiftEntryFactory.giftEntry;
 
-    getGiftEntry($stateParams.id);
-
-    function getGiftEntry (id) {
-      if (id) {
-        vm.giftEntry = GiftEntry.findById({id: id}, function (entry) {
-          entry.date = new Date(entry.date);
-        });
-      } else {
-        vm.giftEntry = {itemId: $stateParams.itemId};
-      }
-    }
-
-    function saveEntry (entry) {
-      GiftEntry.upsert(entry, function (giftEntry) {
-        $state.go('itemDetail', {id: giftEntry.itemId});
-        console.log(giftEntry);
+    if ($stateParams.id) {
+      GiftEntryFactory.getGiftEntry($stateParams.id).then(function () {
+        vm.giftEntry = GiftEntryFactory.giftEntry;
       });
+    } else {
+      vm.giftEntry = GiftEntryFactory.createGiftEntry($stateParams.itemId);
     }
+
+    ItemFactory.getItem($stateParams.itemId).then(function () {
+      vm.item = ItemFactory.item;
+    });
   }
 })();

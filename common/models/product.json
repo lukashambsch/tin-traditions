@@ -21,6 +21,9 @@
     },
     "quantity": {
       "type": "number"
+    },
+    "imageFilePath": {
+      "type": "string"
     }
   },
   "validations": [],
