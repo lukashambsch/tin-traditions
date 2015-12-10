@@ -6,6 +6,6 @@
     return {
       restrict: 'E',
       templateUrl: 'js/core/tin-nav.html'
-    }
+    };
   }
 })();

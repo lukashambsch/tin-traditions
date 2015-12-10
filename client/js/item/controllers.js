@@ -20,7 +20,7 @@
 
     vm.item = ItemFactory.item;
 
-    ItemFactory.getItem(id).then(function () {
+    ItemFactory.getItem($stateParams.id).then(function () {
       vm.item = ItemFactory.item;
     });
 
