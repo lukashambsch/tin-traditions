@@ -1,59 +1,48 @@
-<link rel="stylesheet" href="css/my.css" type="text/css">
 <tin-nav></tin-nav>
 <div ng-controller="GiftEntryController as vm">
-  <div class="header-container">
-    <div class="container">
-      <label class="col-sm-6 control-label" for="serialNumber">Serial Number</label>
-      <div class="col-sm-6">
-        <p class="form-control-static">{{vm.item.serialNumber}}</p>
+  <div class="container">
+    <form name="form" ng-submit="vm.saveEntry(vm.giftEntry)">
+      <div class="form-group" ng-class="{'has-error': form.giverName.$invalid}">
+        <label for="giver-name">Giver Name</label>
+        <input required name="giverName" class="form-control" id="giver-name" type="text" placeholder="Giver" ng-model="vm.giftEntry.giver.name">
+        <span class="help-block" ng-show="form.giverName.$error.required">You must enter a giver name.</span>
       </div>
-    </div>
-  </div>
-  <div class="body-container">
-    <div class="container">
-      <form name="form" ng-submit="vm.saveEntry(vm.giftEntry)">
-        <div class="form-group">
-          <label for="date">Date</label>
-          <input class="form-control" id="date" type="date" placeholder="Date" uib-datepicker-popup ng-model="vm.giftEntry.date">
-        </div>
-        <div class="form-group" ng-class="{'has-error': form.giverName.$invalid}">
-          <label for="giver-name">Giver Name</label>
-          <input required name="giverName" class="form-control" id="giver-name" type="text" placeholder="Giver" ng-model="vm.giftEntry.giver.name">
-          <span class="help-block" ng-show="form.giverName.$error.required">You must enter a giver name.</span>
-        </div>
-        <div class="form-group" ng-class="{'has-error': form.giverLocation.$invalid}">
-          <label for="giver-location">Giver Location</label>
-          <input required name="giverLocation" class="form-control" id="giver-location" type="text" placeholder="Location" ng-model="vm.giftEntry.giver.location">
-          <span class="help-block" ng-show="form.giverLocation.$error.required">You must enter a giver location.</span>
-        </div>
-        <div class="form-group" ng-class="{'has-error': form.receiverName.$invalid}">
-          <label for="receiver-name">Receiver Name</label>
-          <input required name="receiverName" class="form-control" id="receiver-name" type="text" placeholder="Receiver" ng-model="vm.giftEntry.receiver.name">
-          <span class="help-block" ng-show="form.receiverName.$error.required">You must enter a receiver name.</span>
-        </div>
-        <div class="form-group" ng-class="{'has-error': form.receiverLocation.$invalid}">
-          <label for="receiver-location">Receiver Location</label>
-          <input required name="recieverLocation" class="form-control" id="receiver-location" type="text" placeholder="Location" ng-model="vm.giftEntry.receiver.location">
-          <span class="help-block" ng-show="form.receiverLocation.$error.required">You must enter a receiver location.</span>
-        </div>
-        <div class="form-group">
-          <label for="contents">Contents</label>
-          <input class="form-control" id="contents" type="text" placeholder="Contents" ng-model="vm.giftEntry.contents">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <input class="form-control" id="message" type="text" placeholder="Message" ng-model="vm.giftEntry.message">
-        </div>
-        <div class="form-group" ng-class="{'has-error': form.pin.$invalid}">
-          <label for="pin">PIN</label>
-          <input required name="pin" class="form-control" id="pin" type="text" placeholder="PIN" ng-model="vm.giftEntry.pin" pin-validator>
-          <span class="help-block" ng-show="form.pin.$error.required">You must enter a PIN.</span>
-          <span class="help-block" ng-show="form.pin.$error.pin">This is not the correct PIN.</span>
-        </div>
-        <div class="form-group">
-          <button type="submit" ng-disabled="form.$invalid || form.$pending" class="btn btn-success">Save</button>
-        </div>
-      </form>
-    </div>
+      <div class="form-group" ng-class="{'has-error': form.giverLocation.$invalid}">
+        <label for="giver-location">Giver Location</label>
+        <input required name="giverLocation" class="form-control" id="giver-location" type="text" placeholder="Location" ng-model="vm.giftEntry.giver.location">
+        <span class="help-block" ng-show="form.giverLocation.$error.required">You must enter a giver location.</span>
+      </div>
+      <div class="form-group" ng-class="{'has-error': form.receiverName.$invalid}">
+        <label for="receiver-name">Receiver Name</label>
+        <input required name="receiverName" class="form-control" id="receiver-name" type="text" placeholder="Receiver" ng-model="vm.giftEntry.receiver.name">
+        <span class="help-block" ng-show="form.receiverName.$error.required">You must enter a receiver name.</span>
+      </div>
+      <div class="form-group" ng-class="{'has-error': form.receiverLocation.$invalid}">
+        <label for="receiver-location">Receiver Location</label>
+        <input required name="recieverLocation" class="form-control" id="receiver-location" type="text" placeholder="Location" ng-model="vm.giftEntry.receiver.location">
+        <span class="help-block" ng-show="form.receiverLocation.$error.required">You must enter a receiver location.</span>
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input class="form-control" id="date" type="date" placeholder="Date" uib-datepicker-popup ng-model="vm.giftEntry.date">
+      </div>
+      <div class="form-group">
+        <label for="contents">Contents</label>
+        <input class="form-control" id="contents" type="text" placeholder="Contents" ng-model="vm.giftEntry.contents">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <input class="form-control" id="message" type="text" placeholder="Message" ng-model="vm.giftEntry.message">
+      </div>
+      <div class="form-group" ng-class="{'has-error': form.pin.$invalid}">
+        <label for="pin">PIN</label>
+        <input required name="pin" class="form-control" id="pin" type="text" placeholder="PIN" ng-model="vm.giftEntry.pin" pin-validator>
+        <span class="help-block" ng-show="form.pin.$error.required">You must enter a PIN.</span>
+        <span class="help-block" ng-show="form.pin.$error.pin">This is not the correct PIN.</span>
+      </div>
+      <div class="form-group">
+        <button type="submit" ng-disabled="form.$invalid || form.$pending" class="btn btn-success">Save</button>
+      </div>
+    </form>
   </div>
 </div>

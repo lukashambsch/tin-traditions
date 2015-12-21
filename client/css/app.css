@@ -1,0 +1,21 @@
+body {
+  padding-top: 70px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
+.navbar {
+  background: white;
+}
+.navbar a {
+  color: #3366ff;
+}
+.header-container {
+  height: 150px;
+  background: #3366ff;
+}
+.body-container {
+  background: white;
+}

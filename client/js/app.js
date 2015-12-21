@@ -7,7 +7,6 @@
     'lbServices',
     'ui.router',
     'ui.bootstrap',
-    'uiRouterStyles',
     'ngCart'
   ])
     .config(['$urlRouterProvider', function ($urlRouterProvider) {

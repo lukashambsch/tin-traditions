@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
 
@@ -9,12 +9,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Creative - Start Bootstrap Theme</title>
+  <title>Tin Traditions</title>
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="theme/css/bootstrap.min.css" type="text/css">
-  <ui-router-styles></ui-router-styles>
-
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,21 +23,11 @@
 
 </head>
 
-<body id="page-top" ng-app="app" ui-view>
+<body id="page-top" ui-view>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="bower_components/ngcart/dist/ngCart.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/angular-ui-router-styles/ui-router-styles.js"></script>
-    <script src="angular-resource.js"></script>
-    <script src="ui-bootstrap.min.js"></script>
-    <script src="build/bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="theme/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="theme/js/bootstrap.min.js"></script>
-
+  <script src="build/vendor.min.js"></script>
+  <script src="js/lb-services.js"></script>
+  <script src="build/bundle.min.js"></script>
 
 </body>
 

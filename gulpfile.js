@@ -4,10 +4,10 @@ var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
-var bower = require('main-bower-files');
+var mainBowerFiles = require('main-bower-files');
 
 var src = {
-  'js': ['client/js/**/*.js']
+  'js': ['client/js/**/*.js', '!client/js/lb-services.js']
 };
 
 var publishdir = 'client/build';
@@ -30,20 +30,16 @@ gulp.task('bower', buildBower);
 
 function buildJs () {
   gulp.src(src.js)
-    .pipe(jshint())
     .pipe(sourcemaps.init())
-      .pipe(concat('bundle.min.js'))
       .pipe(uglify())
+      .pipe(concat('bundle.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dist.js))
 }
 
 function buildBower () {
-  var jsFilter = filter('**/*.js', {restore: true});
-  var cssFilter = filter('**/*.css');
-  return gulp.src(bower())
-    .pipe(jsFilter)
-    .pipe(concat('vendor.js'))
-    .pipe(jsFilter.restore)
+  gulp.src(mainBowerFiles())
+    .pipe(uglify())
+    .pipe(concat('vendor.min.js'))
     .pipe(gulp.dest(dist.vendor))
 }

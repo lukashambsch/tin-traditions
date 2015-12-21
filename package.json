@@ -7,11 +7,6 @@
     "start": "node node_modules/.bin/webpack-dev-server --content-base client"
   },
   "dependencies": {
-    "angular": "^1.4.8",
-    "angular-bootstrap": "^0.12.2",
-    "angular-resource": "^1.4.8",
-    "angular-ui-router": "^0.2.15",
-    "angular-ui-router-styles": "0.0.6",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "jade": "^1.11.0",
