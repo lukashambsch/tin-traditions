@@ -8,11 +8,17 @@
     var vm = this;
     vm.items = ItemFactory.items;
     vm.serialNumber = '';
-    vm.findItems = ItemFactory.findItems;
+    vm.findItems = findItems;
 
     ItemFactory.findItems(vm.serialNumber).then(function () {
       vm.items = ItemFactory.items;
     });
+
+    function findItems (serialNumber) {
+      ItemFactory.findItems(serialNumber).then(function () {
+        vm.items = ItemFactory.items;
+      });
+    }
   }
 
   function ItemController (ItemFactory, $stateParams) {

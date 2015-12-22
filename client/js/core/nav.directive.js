@@ -1,11 +1,11 @@
 (function () {
   angular.module('app.core')
-    .directive('tinNav', [tinNav]);
+    .directive('ttNav', [ttNav]);
 
-  function tinNav () {
+  function ttNav () {
     return {
       restrict: 'E',
-      templateUrl: 'js/core/tin-nav.html'
+      templateUrl: 'js/core/tt-nav.html'
     };
   }
 })();

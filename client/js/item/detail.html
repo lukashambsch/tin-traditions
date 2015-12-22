@@ -1,4 +1,4 @@
-<tin-nav></tin-nav>
+<tt-nav></tt-nav>
 <div class="container-fluid" ng-controller="ItemController as vm">
   <table class="table table-hover table-responsive">
     <thead>
@@ -10,7 +10,7 @@
       <th>Contents</th>
       <th>Message</th>
       <th>
-        <button ui-sref="giftEntryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
+        <button ui-sref="tt.item.entryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
       </th>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
         <td>{{entry.contents}}</td>
         <td>{{entry.message}}</td>
         <td>
-          <button ui-sref="giftEntryEdit({itemId: entry.itemId, id: entry.id})" class="btn btn-primary">Edit</button>
+          <button ui-sref="tt.item.entryEdit({itemId: entry.itemId, id: entry.id})" class="btn btn-primary">Edit</button>
         </td>
       </tr>
     </tbody>

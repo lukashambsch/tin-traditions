@@ -36,7 +36,7 @@
       </div>
       <div class="form-group" ng-class="{'has-error': form.pin.$invalid}">
         <label for="pin">PIN</label>
-        <input required name="pin" class="form-control" id="pin" type="text" placeholder="PIN" ng-model="vm.giftEntry.pin" pin-validator>
+        <input required name="pin" class="form-control" id="pin" type="password" placeholder="PIN" ng-model="vm.giftEntry.pin" pin-validator>
         <span class="help-block" ng-show="form.pin.$error.required">You must enter a PIN.</span>
         <span class="help-block" ng-show="form.pin.$error.pin">This is not the correct PIN.</span>
       </div>

@@ -1,17 +1,19 @@
-<tin-nav></tin-nav>
 <div class="container-fluid" ng-controller="SearchController as search">
-  <form ng-submit="search.findTins(search.serialNumber)">
-    <input class="form-control" placeholder="Search" type="text" ng-model="search.serialNumber">
+  <form ng-submit="search.findItems(search.serialNumber)">
+    <input class="form-control" placeholder="Enter your serial number..." type="text" ng-model="search.serialNumber">
   </form>
   <table class="table table-striped table-hover">
     <thead>
       <th>Serial Number</th>
       <th>Number of Gift Entries</th>
+      <th></th>
     </thead>
     <tbody>
-    <tr ui-sref="itemDetail({id: item.id})" ng-repeat="item in search.items" ng-click="goToDetail(item.serialNumber)">
+    <tr ui-sref="tt.item.detail({id: item.id})" ng-repeat="item in search.items">
         <td>{{item.serialNumber}}</td>
         <td>{{item.giftEntries.length}}</td>
+        <td>
+          <button ui-sref="tt.item.detail({id: item.id})" class="btn btn-primary">View</button>
       </tr>
     </tbody>
   </table>
