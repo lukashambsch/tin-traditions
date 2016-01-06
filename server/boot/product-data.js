@@ -13,13 +13,21 @@ module.exports = function(app, cb) {
       description: 'Tin for christmas treats.',
       price: 19.95,
       quantity: 20,
-      imageFilePath: 'theme/img/portfolio/1.jpg'
+      size: '2" x 2"',
+      imageFilePath: 'img/product/tin.jpg'
     }
   ]
 
   products.forEach(function (product) {
-    app.models.Product.findOrCreate({where: {name: product.name}}, product, function (err, instance) {
-      console.log('Created: ', instance);
+    app.models.Product.findOne({where: {name: product.name}}, function (err, prod) {
+      if (err) console.log(err);
+      app.models.Product.upsert(prod || product, function (err, instance) {
+        if (err) {
+          throw err;
+        } else {
+          console.log('Updated or created: ', instance);
+        }
+      });
     });
   });
   process.nextTick(cb); // Remove if you pass `cb` to an async function yourself

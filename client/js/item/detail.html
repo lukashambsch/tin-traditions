@@ -1,17 +1,20 @@
 <tt-nav></tt-nav>
 <div class="container-fluid" ng-controller="ItemController as vm">
+  <h1>Gift Entries</h1>
   <table class="table table-hover table-responsive">
     <thead>
-      <th>Date</th>
-      <th>Giver</th>
-      <th>Giver Location</th>
-      <th>Receiver</th>
-      <th>Receiver Location</th>
-      <th>Contents</th>
-      <th>Message</th>
-      <th>
-        <button ui-sref="tt.item.entryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
-      </th>
+      <tr>
+        <th>Date</th>
+        <th>Giver</th>
+        <th>Giver Location</th>
+        <th>Receiver</th>
+        <th>Receiver Location</th>
+        <th>Contents</th>
+        <th>Message</th>
+        <th>
+          <button ui-sref="tt.item.entryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
+        </th>
+      </tr>
     </thead>
     <tbody>
       <tr ng-repeat="entry in vm.item.giftEntries">

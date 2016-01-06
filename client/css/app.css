@@ -19,3 +19,9 @@ body {
 .body-container {
   background: white;
 }
+thead {
+  background: #c9dff0;
+}
+.table > thead > tr > th, .table > tbody > tr > td {
+  vertical-align: middle;
+}
