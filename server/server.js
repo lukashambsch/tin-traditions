@@ -57,7 +57,7 @@ app.middleware('auth', loopback.token({
   model: app.models.accessToken
 }));
 
-app.middleware('session:before', loopback.cookieParser(app.get('cookieSecret')));
+app.middleware('session:before', loopback.cookieParser(config['google-login'].clientSecret));
 app.middleware('session', loopback.session({
   secret: 'kitty',
   saveUninitialized: true,
@@ -79,6 +79,10 @@ for (var s in config) {
   passportConfigurator.configureProvider(s, c);
 }
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+
+app.get('/auth/account', ensureLoggedIn('/login'), function (req, res, next) {
+  res.send(req.user);
+});
 
 // start the server if `$ node server.js`
 if (require.main === module)

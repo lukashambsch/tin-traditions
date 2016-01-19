@@ -2,6 +2,7 @@
   angular.module('app', [
     'app.core',
     'app.home',
+    'app.auth',
     'app.item',
     'app.store',
     'lbServices',
