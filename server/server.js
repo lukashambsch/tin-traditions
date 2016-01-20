@@ -80,7 +80,11 @@ for (var s in config) {
 }
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-app.get('/auth/account', ensureLoggedIn('/login'), function (req, res, next) {
+app.get('/auth/account', ensureLoggedIn('/#/login'), function (req, res, next) {
+  var User = loopback.getModel('user');
+  User.findOne({id: req.user.id}, function (user) {
+    console.log(user);
+  });
   res.send(req.user);
 });
 

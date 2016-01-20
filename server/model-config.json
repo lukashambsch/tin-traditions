@@ -14,18 +14,11 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "tinTraditions"
-  },
-  "AccessToken": {
+  "userCredential": {
     "dataSource": "tinTraditions",
     "public": false
   },
-  "UserCredential": {
-    "dataSource": "tinTraditions",
-    "public": false
-  },
-  "UserIdentity": {
+  "userIdentity": {
     "dataSource": "tinTraditions",
     "public": false
   },
@@ -52,5 +45,13 @@
   "Product": {
     "dataSource": "tinTraditions",
     "public": true
+  },
+  "user": {
+    "dataSource": "tinTraditions",
+    "public": true
+  },
+  "accessToken": {
+    "dataSource": "tinTraditions",
+    "public": false
   }
 }

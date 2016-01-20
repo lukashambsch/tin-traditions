@@ -1,5 +1,5 @@
 (function () {
-  angular.module('app.auth', ['ui.router', 'uiRouterStyles'])
+  angular.module('app.auth', ['ui.router', 'uiRouterStyles', 'ngCookies'])
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider
         .state('tt.auth', {
@@ -12,7 +12,7 @@
           templateUrl: 'js/auth/account.html'
         })
         .state('tt.auth.login', {
-          url: '^/auth/login',
+          url: '^/login',
           templateUrl: 'js/auth/login.html'
         })
     }])

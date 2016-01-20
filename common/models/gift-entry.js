@@ -1,6 +1,5 @@
 var loopback = require('loopback');
 var Item = loopback.getModel('Item');
-
 var errorMessage = 'The PIN entered does not match the PIN for this item.';
 
 module.exports = function(GiftEntry) {
@@ -36,5 +35,4 @@ module.exports = function(GiftEntry) {
       cb(null, valid, errMsg);
     });
   };
-
 };

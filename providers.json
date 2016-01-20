@@ -31,8 +31,8 @@
     "callbackURL": "/auth/google/callback",
     "authPath": "/auth/google",
     "callbackPath": "/auth/google/callback",
-    "successRedirect": "/auth/account",
-    "failureRedirect": "/login",
+    "successRedirect": "/#/auth/account",
+    "failureRedirect": "/#/login",
     "scope": ["email", "profile"],
     "failureFlash": true
   },

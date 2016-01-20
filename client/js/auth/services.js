@@ -1,21 +1,33 @@
 (function () {
   angular.module('app.auth')
-    .factory('AuthFactory', ['$http', AuthFactory])
+    .factory('AuthFactory', ['User', 'UserFactory', AuthFactory]);
 
-  function AuthFactory ($http) {
+  function AuthFactory (User, UserFactory) {
 
-    AuthFactory.user = {};
-    AuthFactory.getUser = getUser;
+    AuthFactory.currentUser = null;
+    AuthFactory.ensureHasCurrentUser = ensureHasCurrentUser;
 
     return AuthFactory;
 
-    function getUser () {
-      return $http.get('/auth/account').then(function (res) {
-        AuthFactory.user = res;
-      }, function (err) {
-        if (err) console.log(err);
-      });
+    function ensureHasCurrentUser () {
+      if (AuthFactory.currentUser) {
+        if (AuthFactory.currentUser.id === 'social') {
+          UserFactory.getAccount().then(function (acct) {
+            AuthFactory.currentUser = acct;
+          }, function (err) {
+            console.log('UserFactory.getAccount() error');
+          });
+        } else {
+          console.log('Using cached user.');
+        }
+      } else {
+        console.log('Fetching current user from the server.');
+        User.getCurrent.$promise.then(function (acct) {
+          AuthFactory.currentUser = acct;
+        }, function (err) {
+          console.log('User.getCurrent() error', err);
+        });
+      }
     }
-
   }
 })();
