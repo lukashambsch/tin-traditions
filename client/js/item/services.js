@@ -1,19 +1,20 @@
 (function () {
   angular.module('app.item')
-    .factory('ItemFactory', ['Item', ItemFactory])
+    .factory('ItemFactory', ['$http', 'Item', ItemFactory])
     .factory('GiftEntryFactory', ['GiftEntry', '$q', GiftEntryFactory]);
 
-  function ItemFactory (Item) {
+  function ItemFactory ($http, Item) {
 
     ItemFactory.item = {};
     ItemFactory.items = [];
     ItemFactory.getItem = getItem;
     ItemFactory.findItems = findItems;
+    ItemFactory.linkToUser = linkToUser;
 
     return ItemFactory;
 
     function getItem (id) {
-      return Item.findById({id: id, filter: {include: 'giftEntries'}}).$promise.then(function (item) {
+      return Item.findById({id: id, filter: {include: ['giftEntries', 'product']}}).$promise.then(function (item) {
         item.giftEntries.forEach(function (entry) {
           entry.date = new Date(entry.date);
         });
@@ -22,10 +23,16 @@
     }
 
     function findItems (serialNumber) {
-      return Item.find({filter: {include: 'giftEntries', where: {serialNumber: {like: serialNumber}}}})
+      return Item.find({filter: {include: ['giftEntries'], where: {serialNumber: {like: serialNumber}}}})
         .$promise.then(function (data) {
           ItemFactory.items = data;
         });
+    }
+
+    function linkToUser (itemId, userId) {
+      return $http.put('/api/items/' + itemId + '/users/rel/' + userId).then(function (res) {
+        return res.data;
+      });
     }
   }
 

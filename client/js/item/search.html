@@ -9,11 +9,13 @@
       <th></th>
     </thead>
     <tbody>
-    <tr ui-sref="tt.item.detail({id: item.id})" ng-repeat="item in search.items">
+    <tr ng-repeat="item in search.items">
         <td>{{item.serialNumber}}</td>
         <td>{{item.giftEntries.length}}</td>
         <td>
           <button ui-sref="tt.item.detail({id: item.id})" class="btn btn-primary">View</button>
+          <button ui-sref="tt.item.link({id: item.id})" class="btn btn-primary">Link</button>
+        </td>
       </tr>
     </tbody>
   </table>

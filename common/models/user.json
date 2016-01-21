@@ -23,6 +23,11 @@
       "type": "hasMany",
       "model": "userCredential",
       "foreignKey": "userId"
+    },
+    "items": {
+      "type": "hasAndBelongsToMany",
+      "model": "Item",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -31,6 +36,18 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__link__items"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__unlink__items"
     }
   ],
   "methods": {}

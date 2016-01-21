@@ -42,6 +42,11 @@
       "type": "belongsTo",
       "model": "Product",
       "foreignKey": "productId"
+    },
+    "users": {
+      "type": "hasAndBelongsToMany",
+      "model": "user",
+      "foreignKey": ""
     }
   },
   "acls": [],
