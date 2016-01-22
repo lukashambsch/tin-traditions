@@ -31,7 +31,7 @@ gulp.task('bower', buildBower);
 function buildJs () {
   gulp.src(src.js)
     .pipe(sourcemaps.init())
-      .pipe(uglify())
+      //.pipe(uglify())
       .pipe(concat('bundle.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dist.js))

@@ -1,10 +1,11 @@
 (function () {
   angular.module('app.item')
-    .controller('SearchController', ['ItemFactory', '$stateParams', SearchController])
-    .controller('ItemController', ['$scope', 'ItemFactory', 'AuthFactory', '$stateParams', '$state', ItemController])
+    .controller('SearchController', ['ItemFactory', SearchController])
+    .controller('ItemsController', ['$state', 'ItemFactory', 'AuthFactory', ItemsController])
+    .controller('ItemController', ['ItemFactory', 'AuthFactory', '$stateParams', '$state', ItemController])
     .controller('GiftEntryController', ['GiftEntryFactory', 'ItemFactory', '$stateParams', GiftEntryController]);
 
-  function SearchController (ItemFactory, $stateParams) {
+  function SearchController (ItemFactory) {
     var vm = this;
     vm.items = ItemFactory.items;
     vm.serialNumber = '';
@@ -13,11 +14,9 @@
     initialize();
 
     function initialize () {
-      if (!$stateParams.user) {
-        ItemFactory.findItems(vm.serialNumber).then(function () {
-          vm.items = ItemFactory.items;
-        });
-      }
+      ItemFactory.findItems(vm.serialNumber).then(function () {
+        vm.items = ItemFactory.items;
+      });
     }
 
     function findItems (serialNumber) {
@@ -27,16 +26,34 @@
     }
   }
 
-  function ItemController ($scope, ItemFactory, AuthFactory, $stateParams, $state) {
+  function ItemsController ($state, ItemFactory, AuthFactory) {
+    var vm = this;
+    vm.items = ItemFactory.items;
+    vm.serialNumber = '';
+    vm.findItems = getUserItems;
+
+    initialize();
+
+    function initialize() {
+      getUserItems();
+    }
+
+    function getUserItems () {
+      if (AuthFactory.currentUser && AuthFactory.currentUser.id !== 'social') {
+        ItemFactory.getItemsByUserId(vm.serialNumber, AuthFactory.currentUser.id).then(function () {
+          vm.items = ItemFactory.items;
+        });
+      } else {
+        $state.go('tt.auth.login');
+      }
+    }
+  }
+
+  function ItemController (ItemFactory, AuthFactory, $stateParams, $state) {
     var vm = this;
 
     vm.item = ItemFactory.item;
-    vm.currentUser = AuthFactory.currentUser;
     vm.linkItem = linkItem;
-
-    $scope.$watch(function () { return AuthFactory.currentUser; }, function (user) {
-      vm.currentUser = user;
-    });
 
     initialize();
 
@@ -49,15 +66,14 @@
     }
 
     function linkItem () {
-      if (vm.currentUser && vm.item) {
-        ItemFactory.linkToUser(vm.item.id, vm.currentUser.id).then(function (data) {
+      if (AuthFactory.currentUser && vm.item) {
+        ItemFactory.linkToUser(vm.item.id, AuthFactory.currentUser.id).then(function (data) {
           $state.go('tt.item.detail', {id: data.itemId});
         });
       } else {
         $state.go('tt.auth.login');
       }
     }
-
   }
 
   function GiftEntryController (GiftEntryFactory, ItemFactory, $stateParams) {

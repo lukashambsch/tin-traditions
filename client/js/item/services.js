@@ -10,6 +10,7 @@
     ItemFactory.getItem = getItem;
     ItemFactory.findItems = findItems;
     ItemFactory.linkToUser = linkToUser;
+    ItemFactory.getItemsByUserId = getItemsByUserId;
 
     return ItemFactory;
 
@@ -26,12 +27,27 @@
       return Item.find({filter: {include: ['giftEntries'], where: {serialNumber: {like: serialNumber}}}})
         .$promise.then(function (data) {
           ItemFactory.items = data;
+        }, function (err) {
+          ItemFactory.items = [];
         });
     }
 
     function linkToUser (itemId, userId) {
-      return $http.put('/api/items/' + itemId + '/users/rel/' + userId).then(function (res) {
+      var url = '/api/items/' + itemId + '/users/rel/' + userId;
+      return $http.put(url).then(function (res) {
         return res.data;
+      });
+    }
+
+    function getItemsByUserId (serialNumber, userId) {
+      var filter = {include: ['giftEntries'], where: {serialNumber: {like: serialNumber}}};
+      var where = {where: {serialNumber: {like: serialNumber}}};
+      var filter = '?filter=[include]=giftEntries&filter=' + JSON.stringify(where);
+      var url = '/api/users/' + userId + '/items' + filter;
+      return $http.get(url).then(function (res) {
+        ItemFactory.items = res.data;
+      }, function (err) {
+        ItemFactory.items = [];
       });
     }
   }

@@ -8,11 +8,15 @@
         })
         .state('tt.item.search', {
           url: '^/items',
-          templateUrl: 'js/item/search.html'
+          templateUrl: 'js/item/search.html',
+          controller: 'SearchController',
+          controllerAs: 'search'
         })
         .state('tt.item.user', {
-          url: '^/items/{user:user}',
-          templateUrl: 'js/item/search.html'
+          url: '^/items/user',
+          templateUrl: 'js/item/search.html',
+          controller: 'ItemsController',
+          controllerAs: 'search'
         })
         .state('tt.item.detail', {
           url: '^/items/:id',

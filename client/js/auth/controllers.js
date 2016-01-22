@@ -9,7 +9,6 @@
     initialize();
 
     $scope.$watch(function () { return AuthFactory.currentUser; }, function (usr) {
-      console.log(usr);
       vm.currentUser = usr;
     });
 
