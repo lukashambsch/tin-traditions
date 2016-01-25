@@ -3,7 +3,7 @@
     .controller('SearchController', ['ItemFactory', SearchController])
     .controller('ItemsController', ['$state', 'ItemFactory', 'AuthFactory', ItemsController])
     .controller('ItemController', ['ItemFactory', 'AuthFactory', '$stateParams', '$state', ItemController])
-    .controller('GiftEntryController', ['GiftEntryFactory', 'ItemFactory', '$stateParams', GiftEntryController]);
+    .controller('GiftEntryController', ['GiftEntryFactory', 'ItemFactory', '$stateParams', '$state', GiftEntryController]);
 
   function SearchController (ItemFactory) {
     var vm = this;
@@ -54,15 +54,21 @@
 
     vm.item = ItemFactory.item;
     vm.linkItem = linkItem;
+    vm.canEdit = false;
 
     initialize();
 
     function initialize () {
       if ($stateParams.id) {
-        ItemFactory.getItem($stateParams.id).then(function () {
-          vm.item = ItemFactory.item;
-        });
+        getItem($stateParams.id);
       }
+    }
+
+    function getItem (itemId) {
+      ItemFactory.getItem($stateParams.id).then(function () {
+        vm.item = ItemFactory.item;
+        checkIfEditable();
+      });
     }
 
     function linkItem () {
@@ -74,25 +80,43 @@
         $state.go('tt.auth.login');
       }
     }
+
+    function checkIfEditable () {
+      vm.item.users.forEach(function (user) {
+        if (user.id === AuthFactory.currentUser.id) {
+          vm.canEdit = true;
+        }
+      });
+    }
   }
 
-  function GiftEntryController (GiftEntryFactory, ItemFactory, $stateParams) {
+  function GiftEntryController (GiftEntryFactory, ItemFactory, $stateParams, $state) {
     var vm = this;
 
-    vm.saveEntry = GiftEntryFactory.saveGiftEntry;
+    vm.saveEntry = saveEntry;
     vm.item = ItemFactory.item;
     vm.giftEntry = GiftEntryFactory.giftEntry;
 
-    if ($stateParams.id) {
-      GiftEntryFactory.getGiftEntry($stateParams.id).then(function () {
-        vm.giftEntry = GiftEntryFactory.giftEntry;
+    initialize();
+
+    function initialize () {
+      if ($stateParams.id) {
+        GiftEntryFactory.getGiftEntry($stateParams.id).then(function () {
+          vm.giftEntry = GiftEntryFactory.giftEntry;
+        });
+      } else {
+        vm.giftEntry = GiftEntryFactory.createGiftEntry($stateParams.itemId);
+      }
+
+      ItemFactory.getItem($stateParams.itemId).then(function () {
+        vm.item = ItemFactory.item;
       });
-    } else {
-      vm.giftEntry = GiftEntryFactory.createGiftEntry($stateParams.itemId);
     }
 
-    ItemFactory.getItem($stateParams.itemId).then(function () {
-      vm.item = ItemFactory.item;
-    });
+    function saveEntry () {
+      GiftEntryFactory.saveGiftEntry().then(function () {
+        $state.go('tt.item.detail', {id: GiftEntryFactory.giftEntry.itemId});
+      });
+    }
   }
 })();

@@ -15,7 +15,7 @@
     return ItemFactory;
 
     function getItem (id) {
-      return Item.findById({id: id, filter: {include: ['giftEntries', 'product']}}).$promise.then(function (item) {
+      return Item.findById({id: id, filter: {include: ['giftEntries', 'product', 'users']}}).$promise.then(function (item) {
         item.giftEntries.forEach(function (entry) {
           entry.date = new Date(entry.date);
         });
@@ -72,9 +72,9 @@
       return GiftEntryFactory.giftEntry;
     }
 
-    function saveGiftEntry (entry) {
-      GiftEntry.upsert(entry).then(function (giftEntry) {
-        $state.go('itemDetail', {id: giftEntry.itemId});
+    function saveGiftEntry () {
+      return GiftEntry.upsert(GiftEntryFactory.giftEntry).$promise.then(function (giftEntry) {
+        GiftEntryFactory.giftEntry = giftEntry;
       });
     }
   }

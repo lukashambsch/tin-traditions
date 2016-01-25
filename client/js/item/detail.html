@@ -11,7 +11,7 @@
         <th>Contents</th>
         <th>Message</th>
         <th>
-          <button ui-sref="tt.item.entryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
+          <button ng-if="vm.canEdit" ui-sref="tt.item.entryAdd({itemId: vm.item.id})" class="btn btn-primary">Add</button>
         </th>
       </tr>
     </thead>
@@ -25,7 +25,7 @@
         <td>{{entry.contents}}</td>
         <td>{{entry.message}}</td>
         <td>
-          <button ui-sref="tt.item.entryEdit({itemId: entry.itemId, id: entry.id})" class="btn btn-primary">Edit</button>
+          <button ng-show="vm.canEdit" ui-sref="tt.item.entryEdit({itemId: entry.itemId, id: entry.id})" class="btn btn-primary">Edit</button>
         </td>
       </tr>
     </tbody>
