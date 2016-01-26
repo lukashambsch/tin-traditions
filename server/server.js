@@ -68,6 +68,21 @@ passportConfigurator.init();
 // We need flash messages to see passport errors
 app.use(flash());
 
+// Enables getting current context
+app.use(loopback.context());
+app.use(function (req, res, next) {
+  if (!req.accessToken) return next();
+  // console.log(req.accessToken.userId);
+  app.models.User.findById(req.accessToken.userId, function(err, user) {
+    if (err) return next(err);
+    if (!user) return next(new Error('No user with this access token was found.'));
+    res.locals.currentUser = user;
+    var loopbackContext = loopback.getCurrentContext();
+    if (loopbackContext) loopbackContext.set('currentUser', user);
+    next();
+  });
+});
+
 passportConfigurator.setupModels({
   userModel: app.models.User,
   userIdentityModel: app.models.UserIdentity,

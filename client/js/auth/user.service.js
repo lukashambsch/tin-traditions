@@ -11,6 +11,7 @@
       return $http.get('/auth/account')
         .then(function (response) {
           if (response.data.id) {
+            LoopBackAuth.currentUserData = response.data;
             LoopBackAuth.currentUserId = response.data.id;
             LoopBackAuth.accessTokenId = $cookies.get('access_token').substring(2, 66);
             return response.data;

@@ -1,10 +1,11 @@
 var loopback = require('loopback');
 var Item = loopback.getModel('Item');
-var errorMessage = 'The PIN entered does not match the PIN for this item.';
+var errorMessage = 'This user is not able to add entries to this item. Please link the item first.';
 
 module.exports = function(GiftEntry) {
 
   GiftEntry.validateAsync('pin', pinValidator, {message: errorMessage});
+  GiftEntry.validateAsync('item', userValidator, {message: errorMessage});
   GiftEntry.remoteMethod('checkPin', {
     http: {path: '/check-pin'},
     accepts: {arg: 'giftEntry', type: 'object'},
@@ -16,7 +17,7 @@ module.exports = function(GiftEntry) {
 
   function pinValidator (error, done) {
     var base = this;
-    entry = base.toJSON();
+    var entry = base.toJSON();
     dbItem = Item.findOne({id: entry.itemId}, function (err, item) {
       if (err) throw err;
       if (base.pin != item.pin) error();
@@ -33,6 +34,28 @@ module.exports = function(GiftEntry) {
       }
       var errMsg = valid ? '' : errorMessage;
       cb(null, valid, errMsg);
+    });
+  };
+
+  function userValidator (error, done) {
+    var base = this;
+    var giftEntry = base.toJSON();
+    var valid = false;
+    var ctx = loopback.getCurrentContext();
+    var user = ctx.get('currentUser');
+    var userId = user.id.toString();
+    console.log(userId);
+    Item.findById(giftEntry.itemId, {include: 'users'}, function (err, item) {
+      if (err) throw err;
+      if (item && item.users) {
+        item.users.getAsync()._result.forEach(function (usr) {
+          if (usr.id == userId) {
+            valid = true;
+          }
+        });
+      }
+      if (!valid) error();
+      done();
     });
   };
 };

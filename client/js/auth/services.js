@@ -1,13 +1,22 @@
 (function () {
   angular.module('app.auth')
-    .factory('AuthFactory', ['User', 'UserFactory', AuthFactory]);
+    .factory('AuthFactory', ['User', 'UserFactory', 'LoopBackAuth', AuthFactory]);
 
-  function AuthFactory (User, UserFactory) {
+  function AuthFactory (User, UserFactory, LoopBackAuth) {
 
     AuthFactory.currentUser = null;
     AuthFactory.ensureHasCurrentUser = ensureHasCurrentUser;
 
+    initialize();
+
     return AuthFactory;
+
+    function initialize () {
+      console.log(LoopBackAuth);
+      if (LoopBackAuth.currentUserData) {
+        AuthFactory.currentUser = LoopBackAuth.currentUserData;
+      }
+    }
 
     function ensureHasCurrentUser () {
       if (AuthFactory.currentUser) {
