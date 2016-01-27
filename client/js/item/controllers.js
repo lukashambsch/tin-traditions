@@ -1,15 +1,16 @@
 (function () {
   angular.module('app.item')
-    .controller('SearchController', ['ItemFactory', SearchController])
+    .controller('SearchController', ['ItemFactory', 'AuthFactory', SearchController])
     .controller('ItemsController', ['$state', 'ItemFactory', 'AuthFactory', ItemsController])
     .controller('ItemController', ['ItemFactory', 'AuthFactory', '$stateParams', '$state', ItemController])
     .controller('GiftEntryController', ['GiftEntryFactory', 'ItemFactory', '$stateParams', '$state', GiftEntryController]);
 
-  function SearchController (ItemFactory) {
+  function SearchController (ItemFactory, AuthFactory) {
     var vm = this;
     vm.items = ItemFactory.items;
     vm.serialNumber = '';
     vm.findItems = findItems;
+    vm.checkIfLinked = checkIfLinked;
 
     initialize();
 
@@ -23,6 +24,18 @@
       ItemFactory.findItems(serialNumber).then(function () {
         vm.items = ItemFactory.items;
       });
+    }
+
+    function checkIfLinked (item) {
+      var isLinked = false;
+      if (item.users.length > 0 && AuthFactory.currentUser) {
+        item.users.forEach(function (usr) {
+          if (usr.id === AuthFactory.currentUser.id) {
+            isLinked = true;
+          }
+        });
+      }
+      return isLinked;
     }
   }
 

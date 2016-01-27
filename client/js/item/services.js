@@ -24,7 +24,7 @@
     }
 
     function findItems (serialNumber) {
-      return Item.find({filter: {include: ['giftEntries'], where: {serialNumber: {like: serialNumber}}}})
+      return Item.find({filter: {include: ['giftEntries', 'users'], where: {serialNumber: {like: serialNumber}}}})
         .$promise.then(function (data) {
           ItemFactory.items = data;
         }, function (err) {

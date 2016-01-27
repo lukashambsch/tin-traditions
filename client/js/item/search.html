@@ -14,7 +14,7 @@
         <td>{{item.giftEntries.length}}</td>
         <td>
           <button ui-sref="tt.item.detail({id: item.id})" class="btn btn-primary">View</button>
-          <button ui-sref="tt.item.link({id: item.id})" class="btn btn-primary">Link</button>
+          <button ng-hide="search.checkIfLinked(item)" ui-sref="tt.item.link({id: item.id})" class="btn btn-primary">Link</button>
         </td>
       </tr>
     </tbody>

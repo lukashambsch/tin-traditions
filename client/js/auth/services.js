@@ -12,7 +12,10 @@
     return AuthFactory;
 
     function initialize () {
-      console.log(LoopBackAuth);
+      assignCurrentUserData();
+    }
+
+    function assignCurrentUserData () {
       if (LoopBackAuth.currentUserData) {
         AuthFactory.currentUser = LoopBackAuth.currentUserData;
       }
