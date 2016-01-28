@@ -1,6 +1,2 @@
-<div ng-show="user.currentUser">
-  {{user.currentUser.profiles[0].profile.displayName}}
-</div>
-<div ng-hide="user.currentUser">
-  <a ui-sref="tt.auth.login">Login</a>
-</div>
+<a ng-hide="user.currentUser" ui-sref="tt.auth.login" href="">Login</a>
+<a ng-show="user.currentUser" ui-sref="tt.auth.account">{{user.currentUser.profiles[0].profile.name.givenName}}</a>

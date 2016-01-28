@@ -7,7 +7,7 @@
           template: '<ui-view/>',
           data: {css: 'css/app.css'}
         })
-        .state('tt.auth.register', {
+        .state('tt.auth.account', {
           url: '^/auth/account',
           templateUrl: 'js/auth/account.html'
         })
