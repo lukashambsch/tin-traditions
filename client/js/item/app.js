@@ -7,36 +7,36 @@
           template: '<ui-view/>'
         })
         .state('tt.item.search', {
-          url: '^/items',
+          url: '^/tins',
           templateUrl: 'js/item/search.html',
           controller: 'SearchController',
           controllerAs: 'search'
         })
         .state('tt.item.user', {
-          url: '^/items/user',
+          url: '^/tins/user',
           templateUrl: 'js/item/search.html',
           controller: 'ItemsController',
           controllerAs: 'search'
         })
         .state('tt.item.detail', {
-          url: '^/items/:id',
+          url: '^/tins/:id',
           templateUrl: 'js/item/detail.html',
           data: {css: 'css/app.css'}
         })
         .state('tt.item.link', {
-          url: '^/items/:id/link',
+          url: '^/tins/:id/link',
           templateUrl: 'js/item/link.html',
           controller: 'ItemController',
           controllerAs: 'vm',
           data: {css: 'css/app.css'}
         })
         .state('tt.item.entryEdit', {
-          url: '^/items/:itemId/giftEntry/:id',
+          url: '^/tins/:itemId/giftEntry/:id',
           templateUrl: 'js/item/upsert.html',
           data: {css: 'css/app.css'}
         })
         .state('tt.item.entryAdd', {
-          url: '^/items/:itemId/giftEntry',
+          url: '^/tins/:itemId/giftEntry',
           templateUrl: 'js/item/upsert.html',
           data: {css: 'css/app.css'}
         });
