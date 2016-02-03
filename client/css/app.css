@@ -25,7 +25,7 @@ thead {
 .table > thead > tr > th, .table > tbody > tr > td {
   vertical-align: middle;
 }
-h1, h3 {
+.login-header {
   text-align: center;
 }
 .social-box {
