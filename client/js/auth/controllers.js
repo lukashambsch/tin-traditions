@@ -5,6 +5,7 @@
   function UserController ($scope, $cookies, AuthFactory) {
     var vm = this;
     vm.currentUser = AuthFactory.currentUser;
+    vm.currentUserHasImage = currentUserHasImage;
 
     initialize();
 
@@ -23,6 +24,13 @@
 
     function getCurrentUser () {
       AuthFactory.ensureHasCurrentUser();
+    }
+
+    function currentUserHasImage () {
+      return (
+        vm.currentUser && vm.currentUser.profiles && vm.currentUser.profiles.length > 0 &&
+        vm.currentUser.profiles[0].profile.photos.length > 0 && vm.currentUser.profiles[0].profile.photos[0].value
+      );
     }
   }
 })();

@@ -5,5 +5,8 @@
   <a ui-sref="tt.auth.account">
     {{user.currentUser.profiles[0].profile.name.givenName}}
   </a>
-  <img ng-src="{{user.currentUser.profiles[0].profile.photos[0].value}}" alt="">
+  <span ng-show="user.currentUserHasImage()">
+    <img ng-src="{{user.currentUser.profiles[0].profile.photos[0].value}}" alt="">
+  </span>
+  <span ng-hide="user.currentUserHasImage()" class="glyphicon glyphicon-user"></span>
 </span>
