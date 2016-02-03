@@ -35,14 +35,14 @@ thead {
 
 /* Add boostrap .navbar-nav > li > a styles to .navbar-nav > li >user > a */
 
-.navbar-nav > li > user > a {
+.navbar-nav > li > user > span > a {
   color: #777;
   padding-top: 15px;
   padding-bottom: 15px;
   line-height: 20px;
 }
 
-.nav > li > user > a {
+.nav > li > user > span > a {
   position: relative;
   display: block;
   padding: 10px 15px;

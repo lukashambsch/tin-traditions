@@ -1,22 +1,19 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container-fullwidth">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Tin Traditions</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a ui-sref="tt.item.user">Tins</a></li>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a ui-sref="tt.item.user">Tins</a></li>
         <li><a ui-sref="tt.store.list">Store</a></li>
         <li><a ui-sref="tt.item.search">Explore</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
         <li>
           <a ui-sref="tt.store.cart">
             <ngcart-summary></ngcart-summary>
           </a>
         </li>
-        <li>
+        <li class="col-md-2">
           <user></user>
         </li>
       </ul>

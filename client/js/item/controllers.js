@@ -28,7 +28,7 @@
 
     function checkIfLinked (item) {
       var isLinked = false;
-      if (item.users.length > 0 && AuthFactory.currentUser) {
+      if (item.users && item.users.length > 0 && AuthFactory.currentUser) {
         item.users.forEach(function (usr) {
           if (usr.id === AuthFactory.currentUser.id) {
             isLinked = true;
@@ -44,6 +44,7 @@
     vm.items = ItemFactory.items;
     vm.serialNumber = '';
     vm.findItems = getUserItems;
+    vm.checkIfLinked = checkIfLinked;
 
     initialize();
 
@@ -59,6 +60,11 @@
       } else {
         $state.go('tt.auth.login');
       }
+    }
+
+    function checkIfLinked (item) {
+      // Using function because of shared search.html template with SearchController
+      return true;
     }
   }
 
