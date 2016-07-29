@@ -16,7 +16,14 @@ module.exports = function(app, cb) {
       size: '2" x 2"',
       imageFilePath: 'img/product/tin.jpg'
     }
-  ]
+  ];
+
+  var tin = {
+    serialNumber: '123456789',
+    pin: '12345',
+    orderNumber: 'abcd',
+    datePurchased: new Date()
+  };
 
   products.forEach(function (product) {
     app.models.Product.findOne({where: {name: product.name}}, function (err, prod) {
@@ -25,10 +32,25 @@ module.exports = function(app, cb) {
         if (err) {
           throw err;
         } else {
+          tin.productId = instance.id;
           console.log('Updated or created: ', instance);
+          createTin(tin);
         }
       });
     });
   });
   process.nextTick(cb); // Remove if you pass `cb` to an async function yourself
+
+  function createTin(tin) {
+    app.models.Item.findOne({where: {serialNumber: tin.serialNumber}}, function (err, t) {
+      if (err) console.log(err);
+      app.models.Item.upsert(t || tin, function(err, instance) {
+        if (err) {
+          throw err;
+        } else {
+          console.log('Updated or created: ', instance);
+        }
+      });
+    });
+  }
 };

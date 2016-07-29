@@ -10,6 +10,8 @@ var PassportConfigurator = loopbackPassport.PassportConfigurator;
 var passportConfigurator = new PassportConfigurator(app);
 
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 var flash = require('express-flash');
 
@@ -57,8 +59,8 @@ app.middleware('auth', loopback.token({
   model: app.models.accessToken
 }));
 
-app.middleware('session:before', loopback.cookieParser(config['google-login'].clientSecret));
-app.middleware('session', loopback.session({
+app.middleware('session:before', cookieParser(config['google-login'].clientSecret));
+app.middleware('session', session({
   secret: 'kitty',
   saveUninitialized: true,
   resave: true
